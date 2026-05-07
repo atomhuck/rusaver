@@ -21,6 +21,7 @@ public class VideoDownloaderService {
                     pb = new ProcessBuilder(
                             ytDlpPath,
                             "--ffmpeg-location", ".",
+                            "--cookies", "cookies.txt",
                             "-o", fileName,
                             "-f", formatString,
                             "--no-playlist",
@@ -29,6 +30,7 @@ public class VideoDownloaderService {
                 } else {
                     pb = new ProcessBuilder(
                             ytDlpPath,
+                            "--cookies", "cookies.txt",
                             "-o", fileName,
                             "-f", formatString,
                             "--no-playlist",
