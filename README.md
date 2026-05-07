@@ -1,44 +1,33 @@
 # TikTok & Instagram Reels Downloader Bot
 
-Асинхронный Telegram бот на Java для скачивания видео из TikTok и Instagram Reels.
-
-## Требования
-
-Для работы бота на сервере должны быть установлены:
-1. **Java 17+**
-2. **Maven** (для сборки)
-3. **yt-dlp** — мощная утилита для скачивания видео.
-4. **ffmpeg** — необходим для yt-dlp для корректной обработки видео.
-
-### Установка зависимостей на Linux (Ubuntu/Debian):
-
-```bash
-# Установка Java
-sudo apt update
-sudo apt install openjdk-17-jdk
-
-# Установка yt-dlp
-sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
-sudo chmod a+rx /usr/local/bin/yt-dlp
-
-# Установка ffmpeg
-sudo apt install ffmpeg
-```
-
-## Сборка и запуск
-
-1. Клонируйте репозиторий.
-2. Соберите проект:
-   ```bash
-   mvn clean package
-   ```
-3. Запустите бота, указав ваш токен в переменной окружения:
-   ```bash
-   export BOT_TOKEN="ВАШ_ТОКЕН_БОТА"
-   java -jar target/downloader-videos-1.0-SNAPSHOT.jar
-   ```
+Асинхронный Telegram бот на Java для скачивания видео из TikTok и Instagram Reels. Проект оптимизирован для работы в Docker и быстрого деплоя на облачные платформы (например, Render.com).
 
 ## Особенности
-- Работает полностью асинхронно через `CompletableFuture`.
-- Использует `yt-dlp`, что гарантирует поддержку актуальных алгоритмов TikTok и Instagram.
-- Автоматически удаляет скачанные файлы после отправки.
+- **Асинхронность**: Обработка запросов через `CompletableFuture` (не блокирует бота при скачивании).
+- **Облачный деплой**: Полная поддержка Docker.
+- **Оптимизация**: Автоматическое сжатие видео до 720p для соблюдения лимитов Telegram (50 МБ).
+- **Авто-очистка**: Удаление временных файлов сразу после отправки.
+
+## Поддерживаемые платформы
+- ✅ TikTok
+- ✅ Instagram Reels
+
+## Требования для локального запуска (Windows)
+1. **Java 17+**
+2. **yt-dlp.exe** (положить в корень проекта)
+3. **ffmpeg.exe** (положить в корень проекта)
+
+## Деплой на Render.com (Бесплатно)
+1. Создайте **Web Service** на Render.
+2. Подключите ваш GitHub репозиторий.
+3. Выберите **Runtime: Docker**.
+4. Добавьте переменную окружения (Environment Variable):
+   - `BOT_TOKEN`: ваш токен от @BotFather.
+5. Нажмите **Deploy**.
+
+## Технологии
+- Java 17
+- Maven
+- TelegramBots Library (7.2.1)
+- yt-dlp
+- Docker
