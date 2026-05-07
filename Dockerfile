@@ -21,7 +21,7 @@ RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o 
     chmod a+rx /usr/local/bin/yt-dlp
 
 WORKDIR /app
-COPY --from=build /app/target/downloader-videos-1.0-SNAPSHOT-shaded.jar ./bot.jar
+COPY --from=build /app/target/downloader-videos-1.0-SNAPSHOT.jar ./bot.jar
 
 # Define environment variables
 ENV BOT_TOKEN=""
