@@ -48,7 +48,11 @@ public class VideoDownloaderBot implements LongPollingSingleThreadUpdateConsumer
         downloaderService.downloadVideo(url)
                 .thenAccept(videoFile -> {
                     try {
-                        sendVideo(chatId, videoFile);
+                        if (videoFile.length() > 50 * 1024 * 1024) {
+                            sendText(chatId, "Извини, видео слишком тяжелое (больше 50 МБ). Telegram не позволяет ботам отправлять такие большие файлы.");
+                        } else {
+                            sendVideo(chatId, videoFile);
+                        }
                         // Delete file after sending to save space
                         videoFile.delete();
                     } catch (Exception e) {

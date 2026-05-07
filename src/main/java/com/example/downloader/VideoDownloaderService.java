@@ -22,7 +22,7 @@ public class VideoDownloaderService {
                             ytDlpPath,
                             "--ffmpeg-location", ".",
                             "-o", fileName,
-                            "--format", "mp4",
+                            "-f", "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/best",
                             url
                     );
                 } else {
@@ -30,7 +30,7 @@ public class VideoDownloaderService {
                     pb = new ProcessBuilder(
                             ytDlpPath,
                             "-o", fileName,
-                            "--format", "mp4",
+                            "-f", "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/best",
                             url
                     );
                 }
