@@ -30,16 +30,14 @@ public class VideoDownloaderBot implements LongPollingSingleThreadUpdateConsumer
             if (isSupportedUrl(messageText)) {
                 handleDownloadRequest(chatId, messageText);
             } else if (messageText.equals("/start")) {
-                sendText(chatId, "Привет! Пришли мне ссылку на TikTok, Instagram Reels или YouTube (включая Shorts), и я скачаю видео для тебя.");
+                sendText(chatId, "Привет! Пришли мне ссылку на TikTok или Instagram Reels, и я скачаю видео для тебя.");
             }
         }
     }
 
     private boolean isSupportedUrl(String url) {
         return url.contains("tiktok.com") || 
-               url.contains("instagram.com") || 
-               url.contains("youtube.com") || 
-               url.contains("youtu.be");
+               url.contains("instagram.com");
     }
 
     private void handleDownloadRequest(long chatId, String url) {
