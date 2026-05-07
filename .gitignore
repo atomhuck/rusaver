@@ -7,3 +7,6 @@ target/
 *.iml
 .env
 *.mp4
+*.exe
+*.zip
+dependency-reduced-pom.xml

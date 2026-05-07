@@ -13,13 +13,27 @@ public class VideoDownloaderService {
             File outputFile = new File(fileName);
             
             try {
-                // yt-dlp -o "filename" "url"
-                ProcessBuilder pb = new ProcessBuilder(
-                        "yt-dlp",
-                        "-o", fileName,
-                        "--format", "mp4",
-                        url
-                );
+                String ytDlpPath = new File(".\\yt-dlp.exe").exists() ? ".\\yt-dlp.exe" : "yt-dlp";
+                
+                ProcessBuilder pb;
+                if (ytDlpPath.endsWith(".exe")) {
+                    // Windows local mode
+                    pb = new ProcessBuilder(
+                            ytDlpPath,
+                            "--ffmpeg-location", ".",
+                            "-o", fileName,
+                            "--format", "mp4",
+                            url
+                    );
+                } else {
+                    // Linux/Docker cloud mode
+                    pb = new ProcessBuilder(
+                            ytDlpPath,
+                            "-o", fileName,
+                            "--format", "mp4",
+                            url
+                    );
+                }
                 pb.inheritIO();
                 Process process = pb.start();
                 int exitCode = process.waitFor();
